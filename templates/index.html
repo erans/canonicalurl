@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Canonical URL</title>
+    <title>Canonical URL - RESTful API for obtain the Canonical URL for a given URL</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+    <meta property="og:title" content="Canonical URL - RESTful API for obtain the Canonical URL for a given URL" />
+    <meta property="og:site_name" content="CanonicalURL.info"/>
+    <meta property="og:url" content="https://canonicalurl.info/" />
+    <meta property="og:image" content="http://www.internetmarketingninjas.com/blog/wp-content/uploads/2012/11/relcanonical-300x280.png" />
     <style>
+        .title {
+            margin: 10px 0px 10px 0px;
+            width: 350px;
+        }
         .credits, .credits a {
             color: #c0c0c0;
             padding: 0px;
@@ -13,6 +21,17 @@
         .credits li {
             display: inline;
             margin-right: 30px;
+        }
+
+        .share-buttons {
+            margin: 20px 0px 20px 0px;
+            float: left;
+            width: 100%;
+        }
+
+        .share-button {
+            margin-right: 20px;
+            float: left;
         }
     </style>
   </head>
@@ -23,7 +42,19 @@
               <div class="container">
                   <div class="row">
                       <div class="col-md-12">
-                          <h1>CanonicalURL</h1>
+                          <h1 class="title">CanonicalURL</h1>
+                          <div class="share-buttons">
+                              <div class="googleplus-button share-button">
+                                  <div class="g-plusone" data-size="medium" data-href="https://canonicalurl.info"></div>
+                              </div>
+                              <div class="twitter-button share-button">
+                                  <a href="https://twitter.com/share" class="twitter-share-button" data-via="erans" data-hashtags="canonicalurl" data-url="https://canonicalurl.info">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                              </div>
+                              <div class="facebook-button share-button">
+                                  <div class="fb-like" data-href="https://canonicalurl.info" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+                              </div>
+                          </div>
                           <p>Canonical URL provides a simple RESTful service to obtain the canonical URL declared by a page in its HTML.</p>
                           <p>The API supports fetching the canonical URL based on a number of selectors:
                               <ul>
@@ -103,5 +134,16 @@
       </div>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+      </script>
+      <script src="https://apis.google.com/js/platform.js" async defer></script>
   </body>
 </html>
