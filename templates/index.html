@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Canonical URL</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+    <style>
+        .credits, .credits a {
+            color: #c0c0c0;
+            padding: 0px;
+        }
+
+        .credits li {
+            display: inline;
+            margin-right: 30px;
+        }
+    </style>
+  </head>
+  <body>
+      <a href="https://github.com/erans/canonicalurl"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+      <div class="container">
+          <div class="row">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <h1>CanonicalURL</h1>
+                          <p>Canonical URL provides a simple RESTful service to obtain the canonical URL declared by a page in its HTML.</p>
+                          <p>The API supports fetching the canonical URL based on a number of selectors:
+                              <ul>
+                                  <li>link[rel='canonical'] - Fetches the declared canonical URL element</li>
+                                  <li>meta[property='og:url'] - Fetches the declared canonical URL as defined by the <a href="http://ogp.me">OpenGraph</a> protocol</li>
+                              </ul>
+                          </p>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-12">
+                          <h3>Examples</h3>
+                          <pre><code class="language-bash">curl https://canonicalurl.info/get?url=http%3A%2F%2Fmashable.com%2F</code></pre>
+                          <br/>
+                          <h3>Parameters</h3>
+                          <table class="table">
+                              <tbody>
+                                  <tr>
+                                      <th>Name</th>
+                                      <th>Value</th>
+                                      <th>Comments</th>
+                                  </tr>
+                                  <tr>
+                                      <td><code>&amp;url</code></td>
+                                      <td>The URL to retrieve its canonical URL</td>
+                                      <td></td>
+                                  </tr>
+                                  <tr>
+                                      <td><code>&amp;types</code></td>
+                                      <td>The types of canonical URL to retrieve.</td>
+                                      <td>Optional. By default the API will try to retrieve <code>canonical</code> and if there is no value, it will try <code>opengraph</code>. If you specify values it will search in the order the values are set (i.e. opengraph,canoncail will search for opengraph and the canonical)</td>
+                                  </tr>
+                                  <tr>
+                                      <td></td>
+                                      <td><code>canonical</code></td>
+                                      <td></td>
+                                  </tr>
+                                  <tr>
+                                      <td></td>
+                                      <td><code>opengraph</code></td>
+                                      <td></td>
+                                  </tr>
+                                  <tr>
+                                      <td><code>&amp;callback</code></td>
+                                      <td>The name of the callback JavaScript function when using JSONP (and format is <code>json</code>)</td>
+                                      <td>Optional.</td>
+                                  </tr>
+                                  <tr>
+                                      <td><code>&amp;format</code></td>
+                                      <td>The output format of the result</td>
+                                      <td>Optional. By default it will return <code>json</code></td>
+                                  </tr>
+                                  <tr>
+                                      <td></td>
+                                      <td><code>json</code></td>
+                                      <td>When there is no canonical value the API will return an empty string</td>
+                                  </tr>
+                                  <tr>
+                                      <td></td>
+                                      <td><code>text</code></td>
+                                      <td>When there is no canonical value the API will return an empty string</td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <hr/>
+                      <ul class="credits">
+                          <li>Created by <a href="http://eran.sandler.co.il">Eran Sandler</a> (<a href="http://twitter.com/erans">@erans</a>)</li>
+                          <li><a href="https://github.com/erans/canonicalurl">Get the code</a></li>
+                          <li>All Rights Reserved &copy; 2015</li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>
