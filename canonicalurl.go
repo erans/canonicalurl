@@ -1,4 +1,4 @@
-package canonicalurl
+package main
 
 import (
 	"crypto/sha512"
@@ -13,9 +13,9 @@ import (
 
 	"golang.org/x/net/publicsuffix"
 
-	"appengine"
-	"appengine/memcache"
-	"appengine/urlfetch"
+	"google.golang.org/appengine"
+	"google.golang.org/appengine/memcache"
+	"google.golang.org/appengine/urlfetch"
 
 	"github.com/PuerkitoBio/goquery"
 )
@@ -33,6 +33,7 @@ var canonicalURLLocations = []canonicalURLElement{
 
 var servicesRequiresVPN = []string{
 	"nytimes.com",
+	"testsite.com",
 }
 
 type resultData struct {
@@ -60,9 +61,10 @@ func findElementInDocument(doc *goquery.Document, selector string, attribute str
 
 var tpl = template.Must(template.ParseGlob("templates/*.html"))
 
-func init() {
+func main() {
 	http.HandleFunc("/", handler)
 	http.HandleFunc("/get", canonicalURLHandler)
+	appengine.Main()
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
@@ -103,7 +105,8 @@ func canonicalURLHandler(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 
 	var canonicalURL = ""
-	var resultString = ""
+	var resultString string
+	var cacheItem *memcache.Item
 
 	if item, err := memcache.Get(c, key); err == memcache.ErrCacheMiss {
 		options := cookiejar.Options{
@@ -168,7 +171,7 @@ func canonicalURLHandler(w http.ResponseWriter, r *http.Request) {
 		resultValue, _ := json.Marshal(result)
 		resultString = fmt.Sprintf("%s", resultValue)
 
-		item := &memcache.Item{
+		cacheItem = &memcache.Item{
 			Key:   key,
 			Value: []byte(resultString),
 		}
@@ -180,7 +183,7 @@ func canonicalURLHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	} else {
 		log.Println("from cache")
-		resultString = fmt.Sprintf("%s", item.Value)
+		resultString = fmt.Sprintf("%s", cacheItem.Value)
 	}
 
 	w.Header().Set("Content-Type", "application/json")
