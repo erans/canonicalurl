@@ -107,8 +107,9 @@ func canonicalURLHandler(w http.ResponseWriter, r *http.Request) {
 	var canonicalURL = ""
 	var resultString string
 	var cacheItem *memcache.Item
+	var err error
 
-	if item, err := memcache.Get(c, key); err == memcache.ErrCacheMiss {
+	if cacheItem, err = memcache.Get(c, key); err == memcache.ErrCacheMiss {
 		options := cookiejar.Options{
 			PublicSuffixList: publicsuffix.List,
 		}
@@ -176,7 +177,7 @@ func canonicalURLHandler(w http.ResponseWriter, r *http.Request) {
 			Value: []byte(resultString),
 		}
 
-		if err := memcache.Add(c, item); err == memcache.ErrNotStored {
+		if err := memcache.Add(c, cacheItem); err == memcache.ErrNotStored {
 			log.Println("Failed to add. Already exists")
 		} else {
 			log.Println("Added to cache")
